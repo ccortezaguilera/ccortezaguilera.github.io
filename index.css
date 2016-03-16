@@ -1,0 +1,130 @@
+.center_body {
+	display: block;
+	left: 100px; top: 200px; bottom: 0;
+	width: 178px; 
+}
+
+.contact {
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	float:center;
+	width: 30em;
+}
+
+h1 {
+	display:block;
+}
+
+.info {
+	list-style: none;
+	font-size: 12px;
+	float:bottom;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30em;
+
+}
+.img {
+	display: block;
+	float:center;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70em;
+
+}
+
+.links {
+	font-style: inherit;
+	color: #00e6b8;
+	text-decoration: none;
+	padding-left: 1em;
+	padding-right: 1em;
+	background-color: none;
+}
+
+.lsidebar {
+	position:absolute;
+    left:0; top:200px; bottom: 0;
+    width: 178px;
+}
+.rsidebar {
+	position:absolute;
+	right:75px; top:200px; bottom:0;
+	width: 178px;
+}
+
+.project {
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	float:center;
+	width: 30em;
+}
+
+.reference {
+	color:#66ff66;
+	font-size: 20px;
+	font-family: "Lucida Console", Monaco, monospace;
+	text-align: right;
+	text-decoration: none;
+}
+
+.resume {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	float:center;
+	width: 30em;
+}
+.page_info {
+
+}
+
+.page_info_h2 {
+	margin: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	width: 30em;
+	float:bottom;
+
+}
+.portfolio_body {
+	background-image: url("../images/vectorSquares.png");
+	color:#00e5e6;
+}
+
+.portfolio_h1 {
+	position:relative;
+
+}
+
+.project_list {
+	position:static;
+	border: 1px solid cyan;
+	float:center;
+	list-style: none;
+	margin-left: auto;
+	margin-right: auto;
+	width:50%;
+	height: 800px;
+}
+
+.project_list_th {
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 30px;
+}
+
+.writing{
+	color:#66ccff;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	width: 65em;
+}
