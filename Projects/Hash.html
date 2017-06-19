@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hashing your information</title>
+    <meta name="Title" content="Hashing your information">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+</head>
+<style>
+body{
+    font-family: 'Roboto Slab', serif;
+}
+</style>
+<body>
+    <label for="content-input">Content to hash</label><input type="text" id="content-input" onkeypress="check(event)">
+    <input type="button" value="Submit" onclick="hash()">
+</body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+<script>
+function md5(message) {
+    return CryptoJS.MD5(message).toString(CryptoJS.enc.Base64);
+}
+
+function sha1(message) {
+    return CryptoJS.SHA1(message).toString(CryptoJS.enc.Base64);
+}
+
+function sha256(message) {
+    return CryptoJS.SHA256(message).toString(CryptoJS.enc.Base64);
+}
+
+function sha3(message) {
+    return CryptoJS.SHA3(message).toString(CryptoJS.enc.Base64);
+}
+
+function obtainElements() {
+    var inputElements = document.getElementsByTagName('input');
+    var labelElements = document.getElementsByTagName('label');
+    var bodyElements = document.getElementsByTagName('body');
+    return {
+        input: inputElements,
+        label: labelElements,
+        body: bodyElements
+        };
+}
+
+function retry() {
+    console.log('retry!!!');
+}
+
+function removeElements(elements) {
+    var inputElementsLength = elements['input'].length;
+    var i = 0;
+    while (elements['input'].length != 0) {
+        elements['input'][i].parentNode.removeChild(elements['input'][i]);
+    }
+    elements['label'][0].parentNode.removeChild(elements['label'][0]);
+    elements['body'][0].insertAdjacentHTML('beforeend',`<input type="button" value="Retry" onclick="retry()">`);
+}
+
+function createNewDiv(inputElement, value, label) {
+    inputElement.insertAdjacentHTML('beforebegin', `<div><p><label id="` + label + `">`+ label.toUpperCase() + `: <\label>` + value +`<\p><\div>`);
+}
+
+function hash() {
+    console.log('Great you submitted something.');
+    var elements = obtainElements();
+    
+    createNewDiv(elements['input'][0],elements['input'][0].value, 'plaintext');
+    createNewDiv(elements['input'][0], md5(elements['input'][0].value), 'md5');
+    createNewDiv(elements['input'][0], sha1(elements['input'][0].value), 'sha1');
+    createNewDiv(elements['input'][0], sha256(elements['input'][0].value), 'sha256');
+
+    removeElements(elements);
+}
+
+function check(e) {
+    if (e.which == 13 || e.keyCode == 13) {
+        hash();
+    }
+}
+</script>
+</html>
