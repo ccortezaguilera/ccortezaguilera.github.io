@@ -1,0 +1,47 @@
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 45px;
+}
+
+input[type="button"] {
+    background-color: #00ffff;
+    border: black;
+    color: white;
+    padding: 3px 40px;
+    text-align: center;
+    font-size: 22px;
+}
+
+input[type="text"] {
+    padding: 7px 35px;
+    font-size: 16px;
+    font-family: monospace;
+}
+body {
+    font-family: 'Roboto Slab', serif;
+    background-color: lightskyblue;
+    text-align: center;
+}
+
+label {
+    font-size: 24px;
+    padding: 4px 10px;
+    margin: 10px 12px;
+    color: white;
+}
+
+div {
+    color: #668cff;
+}
+
+thead {
+    color: #8533ff;
+    font-size: 32px;
+    text-align: center;
+}
+td {
+    /*color: #ccffcc;*/
+    font-size: 20px;
+    text-align: center;
+}

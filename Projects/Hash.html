@@ -6,18 +6,16 @@
     <title>Hashing your information</title>
     <meta name="Title" content="Hashing your information">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link href="hash.css" rel="stylesheet">
 </head>
-<style>
-body{
-    font-family: 'Roboto Slab', serif;
-}
-</style>
 <body>
+    <h1>Insert your text to hash</h1>
     <label for="content-input">Content to hash</label><input type="text" id="content-input" onkeypress="check(event)">
     <input type="button" value="Submit" onclick="hash()">
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
-<script>
+<script type="text/javascript">
+"use strict";
 function md5(message) {
     return CryptoJS.MD5(message).toString(CryptoJS.enc.Base64);
 }
@@ -28,6 +26,10 @@ function sha1(message) {
 
 function sha256(message) {
     return CryptoJS.SHA256(message).toString(CryptoJS.enc.Base64);
+}
+
+function sha512(message) {
+    return CryptoJS.SHA512(message).toString(CryptoJS.enc.Base64);
 }
 
 function sha3(message) {
@@ -60,17 +62,79 @@ function removeElements(elements) {
 }
 
 function createNewDiv(inputElement, value, label) {
-    inputElement.insertAdjacentHTML('beforebegin', `<div><p><label id="` + label + `">`+ label.toUpperCase() + `: <\label>` + value +`<\p><\div>`);
+    var newDiv = document.createElement("div");
+    //inputElement.insertAdjacentHTML('beforeend', `<div align="left"><label id="` + label + `">`+ label.toUpperCase() + `: <\label>` + value +`<\div>`);
+    var createdDiv = document.getElementById(label);
+    newDiv.setAttribute("align", "center");
+    /*Create the inner the label*/
+    var newLabel = document.createElement("label");
+    newLabel.setAttribute("id", label);
+    var labelText = document.createTextNode(label.toUpperCase());
+    newLabel.appendChild(labelText);
+    // append the label to the div
+    newDiv.appendChild(newLabel);
+    // add text content to the div
+    var valueTag = document.createTextNode(value);
+    newDiv.appendChild(valueTag);
+
+    //todo will remove the insert until added to the table.
+    inputElement.insertAdjacentElement('beforeend', newDiv);
+    return newDiv;
+}
+
+function createLabel(label) {
+    var newLabel = document.createElement("label");
+    newLabel.setAttribute("id", label.toLowerCase());
+    var labelText = document.createTextNode(label.toUpperCase());
+    newLabel.appendChild(labelText);
+    return  newLabel;
 }
 
 function hash() {
     console.log('Great you submitted something.');
     var elements = obtainElements();
-    
-    createNewDiv(elements['input'][0],elements['input'][0].value, 'plaintext');
-    createNewDiv(elements['input'][0], md5(elements['input'][0].value), 'md5');
-    createNewDiv(elements['input'][0], sha1(elements['input'][0].value), 'sha1');
-    createNewDiv(elements['input'][0], sha256(elements['input'][0].value), 'sha256');
+    var tableElement = document.createElement("table");
+    var tableHeaderElement = tableElement.createTHead();
+    var headerRow = tableHeaderElement.insertRow(0);
+    var headerInfo = ['Label', 'Value'];
+    headerInfo.forEach(function(element, index, arr){
+        var headerCell = headerRow.insertCell(index);
+        headerCell.innerHTML = '<b>' + element + '</b>';
+    });
+    elements['body'][0].insertAdjacentElement('beforeend', tableElement);
+
+    var tbodyElement = tableElement.createTBody();
+    var labels = {'plaintext': elements,
+                 'md5': md5,
+                 'sha1': sha1,
+                 'sha256':sha256,
+                 'sha512':sha512,
+                 'sha3':sha3};
+    var newDivs = [];
+    // todo will remove plaintext only need for debugging.
+    newDivs.push(createNewDiv(elements['body'][0], elements['input'][0].value, 'plaintext'));
+    newDivs.push(createNewDiv(elements['body'][0], md5(elements['input'][0].value), 'md5'));
+    newDivs.push(createNewDiv(elements['body'][0], sha1(elements['input'][0].value), 'sha1'));
+    newDivs.push(createNewDiv(elements['body'][0], sha256(elements['input'][0].value), 'sha256'));
+    newDivs.push(createNewDiv(elements['body'][0], sha512(elements['input'][0].value), 'sha512'));
+    newDivs.push(createNewDiv(elements['body'][0], sha3(elements['input'][0].value), 'sha3'));
+
+    var labelKeys = Object.keys(labels);
+    labelKeys.forEach(function(element, index, arr) {
+        var bodyRow = tbodyElement.insertRow(index);
+        var cell1 = bodyRow.insertCell(0);
+        var cell2 = bodyRow.insertCell(1);
+        //var label = createLabel();
+        cell1.innerHTML = "<p>hi</p>"; //label.innerHTML;
+        // only need the if for debugging because index 0 is plaintext
+        if (index != 0) {
+            cell2.innerHTML = '<b>' + labels[element](elements['input'][0].value) + '</b>';
+        } else {
+            cell2.innerHTML = '<b>' + elements['input'][0].value + '</b>'
+        }
+
+
+    });
 
     removeElements(elements);
 }
