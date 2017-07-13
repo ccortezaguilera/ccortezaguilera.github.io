@@ -35,13 +35,44 @@ div {
     color: #668cff;
 }
 
+table {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;    
+}
+
 thead {
     color: #8533ff;
     font-size: 32px;
     text-align: center;
 }
-td {
-    /*color: #ccffcc;*/
+
+#md5 {
+    color: #ccffcc;
+    font-size: 20px;
+    text-align: center;
+}
+
+#sha1 {
+    color: #ccffcc;
+    font-size: 20px;
+    text-align: center;
+}
+
+#sha256 {
+    color: #ccffcc;
+    font-size: 20px;
+    text-align: center;
+}
+
+#sha512 {
+    color: #ccffcc;
+    font-size: 20px;
+    text-align: center;
+}
+
+#sha3 {
+    color: #ccffcc;
     font-size: 20px;
     text-align: center;
 }

@@ -48,46 +48,31 @@ function obtainElements() {
 }
 
 function retry() {
-    console.log('retry!!!');
+    //TODO removeAll the children of body
+    var bodyElement = document.getElementsByTagName('body');
+    var bodyNode = bodyElement.item(0);
+    var children =  bodyNode.children;
+    for (var i = 3; i < children.length; i++) {
+        bodyNode.removeChild(children[i]);
+    }
+    children[0].textContent = 'Insert your text to hash'; // changed h1 to new information.
+
 }
 
 function removeElements(elements) {
+    var h1Element = document.getElementsByTagName('h1');
+    h1Element[0].textContent = "Click Retry To Hash Another Text";
     var inputElementsLength = elements['input'].length;
     var i = 0;
     while (elements['input'].length != 0) {
         elements['input'][i].parentNode.removeChild(elements['input'][i]);
     }
     elements['label'][0].parentNode.removeChild(elements['label'][0]);
-    elements['body'][0].insertAdjacentHTML('beforeend',`<input type="button" value="Retry" onclick="retry()">`);
-}
-
-function createNewDiv(inputElement, value, label) {
-    var newDiv = document.createElement("div");
-    //inputElement.insertAdjacentHTML('beforeend', `<div align="left"><label id="` + label + `">`+ label.toUpperCase() + `: <\label>` + value +`<\div>`);
-    var createdDiv = document.getElementById(label);
-    newDiv.setAttribute("align", "center");
-    /*Create the inner the label*/
-    var newLabel = document.createElement("label");
-    newLabel.setAttribute("id", label);
-    var labelText = document.createTextNode(label.toUpperCase());
-    newLabel.appendChild(labelText);
-    // append the label to the div
-    newDiv.appendChild(newLabel);
-    // add text content to the div
-    var valueTag = document.createTextNode(value);
-    newDiv.appendChild(valueTag);
-
-    //todo will remove the insert until added to the table.
-    inputElement.insertAdjacentElement('beforeend', newDiv);
-    return newDiv;
-}
-
-function createLabel(label) {
-    var newLabel = document.createElement("label");
-    newLabel.setAttribute("id", label.toLowerCase());
-    var labelText = document.createTextNode(label.toUpperCase());
-    newLabel.appendChild(labelText);
-    return  newLabel;
+    var inputButtonElement = document.createElement("input");
+    inputButtonElement.setAttribute("type", "button");
+    inputButtonElement.value = "Retry";
+    inputButtonElement.setAttribute("onclick", "retry()");
+    elements['body'][0].insertAdjacentElement('beforeend', inputButtonElement);
 }
 
 function hash() {
@@ -104,36 +89,21 @@ function hash() {
     elements['body'][0].insertAdjacentElement('beforeend', tableElement);
 
     var tbodyElement = tableElement.createTBody();
-    var labels = {'plaintext': elements,
-                 'md5': md5,
+    var labels = {'md5': md5,
                  'sha1': sha1,
                  'sha256':sha256,
                  'sha512':sha512,
                  'sha3':sha3};
     var newDivs = [];
-    // todo will remove plaintext only need for debugging.
-    newDivs.push(createNewDiv(elements['body'][0], elements['input'][0].value, 'plaintext'));
-    newDivs.push(createNewDiv(elements['body'][0], md5(elements['input'][0].value), 'md5'));
-    newDivs.push(createNewDiv(elements['body'][0], sha1(elements['input'][0].value), 'sha1'));
-    newDivs.push(createNewDiv(elements['body'][0], sha256(elements['input'][0].value), 'sha256'));
-    newDivs.push(createNewDiv(elements['body'][0], sha512(elements['input'][0].value), 'sha512'));
-    newDivs.push(createNewDiv(elements['body'][0], sha3(elements['input'][0].value), 'sha3'));
-
     var labelKeys = Object.keys(labels);
     labelKeys.forEach(function(element, index, arr) {
         var bodyRow = tbodyElement.insertRow(index);
         var cell1 = bodyRow.insertCell(0);
         var cell2 = bodyRow.insertCell(1);
-        //var label = createLabel();
-        cell1.innerHTML = "<p>hi</p>"; //label.innerHTML;
-        // only need the if for debugging because index 0 is plaintext
-        if (index != 0) {
-            cell2.innerHTML = '<b>' + labels[element](elements['input'][0].value) + '</b>';
-        } else {
-            cell2.innerHTML = '<b>' + elements['input'][0].value + '</b>'
-        }
-
-
+        cell1.textContent = element;
+        cell1.setAttribute("id", element.toLowerCase());
+        cell2.textContent = labels[element](elements['input'][0].value);
+        cell2.setAttribute("id", element);
     });
 
     removeElements(elements);
