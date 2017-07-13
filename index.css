@@ -103,20 +103,23 @@ head {
 }
 
 h1 {
-	display:block;
-	position: fixed;
+	text-align: center;
 }
 
 .info {
 	list-style: none;
-	font-size: 12px;
+	font-size: 14px;
 	float:bottom;
 	margin-left: auto;
 	margin-right: auto;
 	width: 30em;
+	text-align: center;
 
 }
 
+.info li {
+	display: inline-block;
+}
 .imgdiv {
 	display: block;
 	float:center;
@@ -154,6 +157,14 @@ h1 {
     left:0; top:200px; bottom: 0;
     width: 178px;
 }
+
+.me {
+	color: #66ff99;
+	text-align: center;
+	font-size: 28px;
+	font-family: 'Poiret One', cursive;
+}
+
 .rsidebar {
 	position:absolute;
 	right:75px; top:200px; bottom:0;
@@ -255,6 +266,12 @@ nav.reference button[type=button] {
 	font-size: 25px;
 	color: white;
 	text-align: center;
+}
+
+@media only screen and (max-device-width: 1024px) {
+    .redwood {
+        background-attachment: scroll;
+    }
 }
 
 .redwood {
