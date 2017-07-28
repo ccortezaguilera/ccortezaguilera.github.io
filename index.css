@@ -97,8 +97,17 @@ head {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	float:center;
 	width: 30em;
+	color: #b3ffff;
+}
+
+.contact a {
+	font-family: 'Poiret One', cursive;
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30em;
+	color: #e6ffff;
 }
 
 h1 {
@@ -157,6 +166,13 @@ h1 {
     width: 178px;
 }
 
+.menu {
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+}
+
 .me {
 	color: #66ff99;
 	text-align: center;
@@ -210,6 +226,13 @@ nav.reference button[type=button] {
 
 	/*Other*/
 	cursor: pointer;
+	-webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+nav.reference button[type=button]:hover {
+	background-color: #00e6b8;
+    color: white;
 }
 
 .resume {
@@ -271,15 +294,28 @@ nav.reference button[type=button] {
     .redwood {
         background-attachment: scroll;
     }
+	.water {
+		background-attachment: scroll;
+	}
 }
 
 .redwood {
 	min-height: 500px;
-	background-image: url(http://res.cloudinary.com/skypeia/image/upload/q_100/v1499919629/redwoods_tolgum.jpg);
+	background-image: url(https://res.cloudinary.com/skypeia/image/upload/v1499919629/redwoods_tolgum.jpg);
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+.water {
+	min-height: 500px;
+	background-image: url(https://res.cloudinary.com/skypeia/image/upload/v1500098307/ocean_tyubzu.jpg);
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
 }
 
 .writing{
