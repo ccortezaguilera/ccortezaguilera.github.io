@@ -260,6 +260,8 @@ nav.reference button[type=button]:hover {
 	-webkit-animation-name: colorchange;
 	animation-duration: 5s;
 	animation-iteration-count: infinite;
+	height: 100%;
+    background-color: #4cd16d;
 }
 
 .portfolio_h1 {
