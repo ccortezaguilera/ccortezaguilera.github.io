@@ -8,7 +8,12 @@ import stock_day
 import stock_collection
 import stock_history
 
-
+"""
+TODO:
+use execjs.compile to compile javascript
+we'll use matplotlib for building the visualizations.
+We'll create html on the fly afterwards.
+"""
 
 html_form = """
 <html>
