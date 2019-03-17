@@ -292,6 +292,15 @@ nav.reference button[type=button]:hover {
 	text-align: center;
 }
 
+.projects a {
+	color: white;
+}
+
+.projects li  {
+	list-style-position: inside
+}
+
+
 @media only screen and (max-device-width: 1024px) {
     .redwood {
         background-attachment: scroll;

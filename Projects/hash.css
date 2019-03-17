@@ -5,12 +5,12 @@ h1 {
 }
 
 input[type="button"] {
-    background-color: #00ffff;
+    background-color: #00e6b8;
     border: black;
     color: white;
-    padding: 3px 40px;
+    padding: 3px 20px;
     text-align: center;
-    font-size: 22px;
+    font-size: 25px;
 }
 
 input[type="text"] {
@@ -18,9 +18,14 @@ input[type="text"] {
     font-size: 16px;
     font-family: monospace;
 }
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
 body {
     font-family: 'Roboto Slab', serif;
-    background-color: lightskyblue;
+    background-color: #001a09;
     text-align: center;
 }
 
@@ -32,7 +37,7 @@ label {
 }
 
 div {
-    color: #668cff;
+    color: #668cff; //#66ccff
 }
 
 table {
@@ -42,7 +47,7 @@ table {
 }
 
 thead {
-    color: #8533ff;
+    color: #66ccff;
     font-size: 32px;
     text-align: center;
 }

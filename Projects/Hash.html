@@ -10,8 +10,10 @@
 </head>
 <body>
     <h1>Insert your text to hash</h1>
-    <label for="content-input">Content to hash</label><input type="text" id="content-input" onkeypress="check(event)">
-    <input type="button" value="Submit" onclick="hash()">
+    <div>
+        <label for="content-input">Content to hash</label><input type="text" id="content-input" onkeypress="check(event)">
+        <input type="button" value="Submit" onclick="hash()">
+    </div>
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
 <script type="text/javascript">
@@ -48,15 +50,33 @@ function obtainElements() {
 }
 
 function retry() {
-    //TODO removeAll the children of body
-    var bodyElement = document.getElementsByTagName('body');
-    var bodyNode = bodyElement.item(0);
+    const elements = obtainElements();
+    var bodyElements = elements['body'];
+    var bodyNode = bodyElements.item(0);
     var children =  bodyNode.children;
-    for (var i = 3; i < children.length; i++) {
-        bodyNode.removeChild(children[i]);
+    const tableElements = document.getElementsByTagName('table');
+    bodyNode.removeChild(tableElements.item(0));
+    children[0].textContent = 'Insert your text to hash';
+    var inputElements = elements['input'];
+    for (let i = 0; i < inputElements.length; i++) {
+        inputElements[i].parentNode.removeChild(inputElements[i]);
     }
-    children[0].textContent = 'Insert your text to hash'; // changed h1 to new information.
-
+    var inputButtonElement = document.createElement("input");
+    inputButtonElement.setAttribute("type", "button");
+    inputButtonElement.value = "Submit";
+    inputButtonElement.setAttribute("onclick", "hash()");
+    const divElement = document.createElement("div");
+    const labelElement = document.createElement("label");
+    const inputTextElement = document.createElement("input");
+    inputTextElement.setAttribute("type", "text");
+    inputTextElement.setAttribute("id", "content-input");
+    inputTextElement.setAttribute("onkeypress", "check(event)");
+    labelElement.setAttribute("for", 'content-input');
+    labelElement.textContent = 'Content to hash';
+    divElement.insertAdjacentElement('afterbegin', labelElement);
+    divElement.insertAdjacentElement('beforeend', inputTextElement);
+    divElement.insertAdjacentElement('beforeend', inputButtonElement);
+    bodyElements[0].insertAdjacentElement('beforeend', divElement);
 }
 
 function removeElements(elements) {
@@ -76,7 +96,6 @@ function removeElements(elements) {
 }
 
 function hash() {
-    console.log('Great you submitted something.');
     var elements = obtainElements();
     var tableElement = document.createElement("table");
     var tableHeaderElement = tableElement.createTHead();
